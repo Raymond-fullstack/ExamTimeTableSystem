@@ -1,0 +1,78 @@
+﻿@model SubjectCombination
+
+@{
+    ViewData["Title"] = "Create Subject Combination";
+    var departments = ViewBag.Departments as MultiSelectList;
+    var programmes = ViewBag.Programmes as SelectList;
+}
+
+<div class="form-container shadow p-4 bg-white rounded">
+    <h1 class="h4 text-primary mb-3">
+        <i class="bi bi-layers me-2"></i>Create Subject Combination
+    </h1>
+    <hr class="mb-4" />
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <!-- Combination Name -->
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label fw-semibold"></label>
+            <input asp-for="Name" class="form-control shadow-sm" placeholder="Enter subject combination name" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <!-- Number of Students -->
+        <div class="form-group mb-3">
+            <label asp-for="NumberOfStudents" class="form-label fw-semibold"></label>
+            <input asp-for="NumberOfStudents" class="form-control shadow-sm" placeholder="Enter number of students" />
+            <span asp-validation-for="NumberOfStudents" class="text-danger small"></span>
+        </div>
+
+        <!-- Programme Dropdown -->
+        <div class="form-group mb-3">
+            <label asp-for="ProgrammeId" class="form-label fw-semibold">Programme</label>
+            <div class="input-group shadow-sm">
+                <span class="input-group-text"><i class="bi bi-journal-code"></i></span>
+                <select asp-for="ProgrammeId" class="form-select" asp-items="programmes">
+                    <option value=""> Select Programme</option>
+                </select>
+            </div>
+            <span asp-validation-for="ProgrammeId" class="text-danger small"></span>
+        </div>
+
+        <!-- Departments Checkboxes in 2 columns -->
+        <div class="form-group mb-3">
+            <label class="form-label fw-semibold">Departments</label>
+            <div class="row border rounded p-3 shadow-sm">
+                @foreach (var dept in departments)
+                {
+                    <div class="col-md-6">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox"
+                                   name="SelectedDepartmentIds"
+                                   value="@dept.Value"
+                                   id="dept_@dept.Value"
+                                   @(dept.Selected ? "checked" : "") />
+                            <label class="form-check-label" for="dept_@dept.Value">
+                                @dept.Text
+                            </label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Submit and Cancel -->
+        <div class="form-group mt-4 d-flex justify-content-start">
+            <button type="submit" class="btn btn-success px-4 me-2">Create</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

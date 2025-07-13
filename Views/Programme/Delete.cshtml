@@ -1,0 +1,44 @@
+﻿@model Programme
+
+@{
+    ViewData["Title"] = "Delete Program";
+}
+
+<div class="form-container shadow p-4 bg-white rounded">
+    <h1 class="h4 text-info mb-3"><i class="bi bi-journal-code me-2"></i>Delete Program</h1>
+    <hr class="mb-4" />
+
+    <div class="card-body">
+        <h5 class="card-title text-primary fw-semibold">
+            <i class="bi bi-mortarboard-fill me-2"></i>@Model.Name
+        </h5>
+        <p class="mb-1 text-muted">
+            <i class="bi bi-building me-1"></i> <strong>Department:</strong> @Model.Department?.Name
+        </p>
+        <p class="mb-1 text-muted">
+            <i class="bi bi-clock-history me-1"></i> <strong>Year:</strong> @Model.Year?.Name
+        </p>
+        <p class="mb-0 text-muted">
+            <i class="bi bi-people-fill me-1"></i> <strong>Students:</strong>
+            <span class="badge bg-light text-dark">@Model.NumberOfStudents</span>
+        </p>
+    </div>
+    <hr class="mb-4" />
+
+    <form asp-action="Delete">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="ProgrammeId" />
+
+        <!-- Submit and Back Buttons -->
+        <div class="form-group mt-4 d-flex justify-content-start">
+            <input type="submit" value="Confirm" class="btn btn-danger px-4 me-2" />
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

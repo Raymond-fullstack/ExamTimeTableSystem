@@ -1,0 +1,55 @@
+﻿/* === Reusable Form Styles === */
+
+.form-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+    .form-container h1,
+    .form-container h4 {
+        color: #0047ab;
+        font-weight: 600;
+    }
+
+.form-group label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    .form-control:focus {
+        border-color: #43a047;
+        box-shadow: 0 0 0 0.2rem rgba(67, 160, 71, 0.25);
+    }
+
+.text-danger {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.btn-success {
+    background-color: #43a047;
+    border-color: #43a047;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+}
+
+    .btn-success:hover {
+        background-color: #388e3c;
+        border-color: #388e3c;
+    }
+
+.btn-outline-secondary {
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+}

@@ -1,0 +1,27 @@
+﻿@{
+    var message = TempData["ToastMessage"] as string;
+    var type = TempData["ToastType"] as string ?? "success";
+
+    var (toastClass, iconHtml) = type switch
+    {
+        "success" => ("bg-success text-white", "<i class='bi bi-check-circle-fill me-2'></i>"),
+        "danger" => ("bg-danger text-white", "<i class='bi bi-x-circle-fill me-2'></i>"),
+        "warning" => ("bg-warning text-dark", "<i class='bi bi-exclamation-triangle-fill me-2'></i>"),
+        "info" => ("bg-info text-dark", "<i class='bi bi-info-circle-fill me-2'></i>"),
+        _ => ("bg-secondary text-white", "<i class='bi bi-info-circle me-2'></i>")
+    };
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100">
+        <div id="toastContainer" class="toast align-items-center @toastClass border-0 fade" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @Html.Raw(iconHtml) @message
+                </div>
+                <button type="button" class="btn-close @((type == "warning" || type == "info") ? "" : "btn-close-white") me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}

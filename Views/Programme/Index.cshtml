@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Programme>
+@{
+    ViewData["Title"] = "Programs";
+    var currentSearch = Context.Request.Query["searchString"];
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold mb-0 text-primary">
+        <i class="bi bi-journal-code"></i> Programs
+    </h3>
+    <a asp-action="Create" class="btn btn-success shadow-sm">
+        <i class="bi bi-plus-circle"></i> Add Program
+    </a>
+</div>
+
+<!-- Search Form -->
+<form method="get" asp-action="Index" class="mb-4">
+    <div class="input-group shadow-sm">
+        <input type="text" name="searchString" class="form-control border-end-0" placeholder="Search programs by name..." value="@currentSearch" />
+        <button type="submit" class="btn btn-outline-info">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        <i class="bi bi-info-circle-fill me-1"></i> No programs available.
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var prog in Model)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 transition">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-semibold">
+                            <i class="bi bi-mortarboard-fill me-2"></i>@prog.Name
+                        </h5>
+                        <p class="mb-1 text-muted">
+                            <i class="bi bi-building me-1"></i> <strong>Department:</strong> @prog.Department?.Name
+                        </p>
+                        <p class="mb-1 text-muted">
+                            <i class="bi bi-clock-history me-1"></i> <strong>Year:</strong> @prog.Year?.Name
+                        </p>
+                        @if (prog.NumberOfStudents != null)
+                        {
+                            <p class="mb-0 text-muted">
+                                <i class="bi bi-people-fill me-1"></i> <strong>Students:</strong>
+                                <span class="badge bg-light text-dark">
+                                    @(prog.NumberOfStudents != null ? prog.NumberOfStudents.ToString() : "Not Provided")
+                                </span>
+                            </p>
+
+                        }
+
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-start">
+                        <a asp-action="Edit" asp-route-id="@prog.ProgrammeId" class="btn btn-sm btn-warning me-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@prog.ProgrammeId" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

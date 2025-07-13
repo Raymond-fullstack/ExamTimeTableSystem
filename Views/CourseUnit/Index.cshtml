@@ -1,0 +1,126 @@
+﻿@using ExamTimeTable.ViewModels
+@model CourseUnitIndexViewModel
+
+@{
+    ViewData["Title"] = "Course Units";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-primary">
+            <i class="bi bi-book-half me-2"></i> Course Units
+        </h3>
+        <a asp-action="Create" class="btn btn-success shadow-sm">
+            <i class="bi bi-plus-circle me-1"></i> Add Course Unit
+        </a>
+    </div>
+
+    <!-- Filter Form -->
+    <form method="get" asp-action="Index" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="form-label fw-semibold">Programme</label>
+            <select name="programmeId" class="form-select" asp-items="Model.Programmes">
+                <option value="">All Programmes</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label fw-semibold">Subject Combination</label>
+            <select name="subjectCombinationId" class="form-select" asp-items="Model.SubjectCombinations">
+                <option value="">All Combinations</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Year</label>
+            <select name="yearId" class="form-select" asp-items="Model.Years">
+                <option value="">All Years</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Type</label>
+            <select name="sharedFilter" class="form-select">
+                @if (string.IsNullOrEmpty(Model.SelectedSharedFilter))
+                {
+                    <option value="" selected>All</option>
+                }
+                else
+                {
+                    <option value="">All</option>
+                }
+
+                @if (Model.SelectedSharedFilter == "shared")
+                {
+                    <option value="shared" selected>Shared</option>
+                }
+                else
+                {
+                    <option value="shared">Shared</option>
+                }
+
+                @if (Model.SelectedSharedFilter == "exclusive")
+                {
+                    <option value="exclusive" selected>Exclusive</option>
+                }
+                else
+                {
+                    <option value="exclusive">Exclusive</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-outline-primary w-100">
+                <i class="bi bi-filter me-1"></i> Filter
+            </button>
+        </div>
+    </form>
+
+
+    <!-- CourseUnit Cards -->
+    @if (Model.CourseUnits.Any())
+    {
+        <div class="row g-4">
+            @foreach (var cu in Model.CourseUnits)
+            {
+                var isShared = (cu.ProgrammeCourseUnits.Count + cu.SubjectCombinationCourseUnits.Count) > 1;
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark fw-semibold">
+                                <i class="bi bi-book me-1"></i> @cu.Name
+                            </h5>
+                            <p class="text-muted mb-1"><strong>Code:</strong> @cu.Code</p>
+                            <p class="text-muted mb-1">
+                                <strong>Participants:</strong>
+                                <span class="badge bg-info text-white">@cu.EstimatedParticipants</span>
+                            </p>
+                            <p class="text-muted mb-1">
+                                <strong>Shared:</strong>
+                                <span class="badge bg-@(isShared ? "success" : "secondary") text-white">
+                                    @(isShared ? "Yes" : "No")
+                                </span>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-start">
+                            <a asp-action="Edit" asp-route-id="@cu.CourseUnitId" class="btn btn-sm btn-warning me-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@cu.CourseUnitId" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="bi bi-info-circle me-1"></i> No course units found for the selected filters.
+        </div>
+    }
+</div>

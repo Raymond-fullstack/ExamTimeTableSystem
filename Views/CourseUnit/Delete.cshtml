@@ -1,0 +1,45 @@
+﻿@model ExamTimeTable.Models.CourseUnit
+@{
+    ViewData["Title"] = "Delete Course Unit";
+}
+
+<div class="form-container shadow p-4 bg-white rounded">
+    <h1 class="h4 text-danger mb-3"><i class="bi bi-x-circle-fill me-2"></i>Delete Course Unit</h1>
+    <hr class="mb-4" />
+
+    <div class="mb-3">
+        <h5 class="text-primary">@Model.Name</h5>
+        <p><strong>Code:</strong> @Model.Code</p>
+        <p><strong>Estimated Participants:</strong> @Model.EstimatedParticipants</p>
+
+        @if (Model.ProgrammeCourseUnits.Any())
+        {
+            <p><strong>Programmes:</strong></p>
+            <ul>
+                @foreach (var pcu in Model.ProgrammeCourseUnits)
+                {
+                    <li>@pcu.Programme?.Name (@pcu.Year?.Name)</li>
+                }
+            </ul>
+        }
+
+        @if (Model.SubjectCombinationCourseUnits.Any())
+        {
+            <p><strong>Subject Combinations:</strong></p>
+            <ul>
+                @foreach (var sccu in Model.SubjectCombinationCourseUnits)
+                {
+                    <li>@sccu.SubjectCombination?.Name (@sccu.Year?.Name)</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CourseUnitId" />
+        <div class="form-group d-flex justify-content-start mt-4">
+            <button type="submit" class="btn btn-danger me-2">Confirm Delete</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

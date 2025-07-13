@@ -1,0 +1,146 @@
+body {
+    background: #f8fafc;
+    color: #222;
+}
+
+#wrapper {
+    min-height: 100vh;
+}
+
+#sidebar {
+    min-width: 260px;
+    max-width: 260px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0047ab 0%, #43a047 100%);
+    transition: margin 0.3s;
+    box-shadow: 2px 0 8px rgba(0, 71, 171, 0.08);
+}
+
+#sidebar .sidebar-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar .nav-link {
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 6px 0;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#sidebar .nav-link.active,
+#sidebar .nav-link:hover {
+    background: #003380;
+    color: #fff;
+}
+
+#sidebar .nav-link i {
+    font-size: 1.2rem;
+}
+
+#page-content-wrapper {
+    flex-grow: 1;
+    background: #f8fafc;
+    min-height: 100vh;
+    transition: margin 0.3s;
+}
+
+@media (max-width: 992px) {
+    #sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 1050;
+        margin-left: -260px;
+    }
+    #wrapper.show-sidebar #sidebar {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        width: 100vw;
+    }
+}
+
+.table-responsive {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.table-custom {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(25, 118, 210, 0.07);
+    margin-bottom: 2rem;
+}
+
+.table-custom th,
+.table-custom td {
+    vertical-align: middle;
+    border: none;
+    padding: 1rem 1.2rem;
+}
+
+.table-custom th {
+    background: #e3f2fd;
+    color: #0047ab;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+}
+
+.table-custom tr:hover {
+    background: #f1f8e9;
+}
+
+.btn-success,
+.btn-info,
+.custom-edit-btn,
+.modal .btn-success {
+    border-radius: 4px !important;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+#toast-container .toast {
+    min-width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.12);
+}
+
+.modal-content {
+    border-radius: 12px;
+}
+
+input[type="search"],
+.form-control:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.08);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: #e3f2fd;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1976d2;
+    border-radius: 4px;
+}
+
+@media (max-width: 576px) {
+    #dataTable td:last-child {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+}

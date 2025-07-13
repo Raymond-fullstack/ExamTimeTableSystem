@@ -1,0 +1,129 @@
+﻿@using ExamTimeTable.ViewModels
+@model CourseUnitEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Course Unit";
+}
+
+<div class="form-container shadow p-4 bg-white rounded">
+    <h1 class="h4 text-warning mb-3"><i class="bi bi-journal-code me-2"></i>Edit Course Unit</h1>
+    <hr class="mb-4" />
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="CourseUnitId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <!-- Name -->
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label fw-semibold"></label>
+            <input asp-for="Name" class="form-control shadow-sm" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <!-- Code -->
+        <div class="form-group mb-3">
+            <label asp-for="Code" class="form-label fw-semibold"></label>
+            <input asp-for="Code" class="form-control shadow-sm" />
+            <span asp-validation-for="Code" class="text-danger small"></span>
+        </div>
+
+        <!-- Programmes -->
+        <div class="form-group mb-4">
+            <label class="form-label fw-semibold">Attached Programmes</label>
+            <div class="border rounded p-3 shadow-sm">
+                @for (int i = 0; i < Model.ProgrammesWithYears.Count; i++)
+                {
+                    var prog = Model.ProgrammesWithYears[i];
+                    <div class="mb-2">
+                        <strong>@prog.ProgrammeName</strong>
+                        <div class="ms-3 mt-1">
+                            @for (int j = 0; j < prog.Years.Count; j++)
+                            {
+                                var year = prog.Years[j];
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox"
+                                           class="form-check-input"
+                                           name="ProgrammesWithYears[@i].Years[@j].IsSelected"
+                                           value="true"
+                                           @(year.IsSelected ? "checked" : "") />
+                                    <input type="hidden" name="ProgrammesWithYears[@i].Years[@j].YearId" value="@year.YearId" />
+                                    <label class="form-check-label">@year.YearName</label>
+                                </div>
+                            }
+                        </div>
+                        <input type="hidden" name="ProgrammesWithYears[@i].ProgrammeId" value="@prog.ProgrammeId" />
+                        <input type="hidden" name="ProgrammesWithYears[@i].ProgrammeName" value="@prog.ProgrammeName" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Education Combinations -->
+        <div class="form-group mb-4">
+            <label class="form-label fw-semibold">Attached BSc. Education Combinations</label>
+            <div class="border rounded p-3 shadow-sm">
+                @for (int i = 0; i < Model.EducationGroups.Count; i++)
+                {
+                    var group = Model.EducationGroups[i];
+                    <div class="mb-3">
+                        <strong>@group.YearName</strong>
+                        <div class="ms-3 mt-2">
+                            @for (int j = 0; j < group.Combinations.Count; j++)
+                            {
+                                var combo = group.Combinations[j];
+                                <div class="form-check">
+                                    <input type="checkbox"
+                                           class="form-check-input"
+                                           name="EducationGroups[@i].Combinations[@j].IsSelected"
+                                           value="true"
+                                           @(combo.IsSelected ? "checked" : "") />
+                                    <input type="hidden" name="EducationGroups[@i].Combinations[@j].SubjectCombinationId" value="@combo.SubjectCombinationId" />
+                                    <label class="form-check-label">@combo.Name</label>
+                                </div>
+                            }
+                        </div>
+                        <input type="hidden" name="EducationGroups[@i].YearId" value="@group.YearId" />
+                        <input type="hidden" name="EducationGroups[@i].YearName" value="@group.YearName" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- HEAC -->
+        @if (Model.HEACGroup != null)
+        {
+            <div class="form-group mb-4">
+                <label class="form-label fw-semibold">Attached HEAC Combinations</label>
+                <div class="border rounded p-3 shadow-sm">
+                    @for (int i = 0; i < Model.HEACGroup.Combinations.Count; i++)
+                    {
+                        var combo = Model.HEACGroup.Combinations[i];
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   name="HEACGroup.Combinations[@i].IsSelected"
+                                   value="true"
+                                   @(combo.IsSelected ? "checked" : "") />
+                            <input type="hidden" name="HEACGroup.Combinations[@i].SubjectCombinationId" value="@combo.SubjectCombinationId" />
+                            <label class="form-check-label">@combo.Name</label>
+                        </div>
+                    }
+                    <input type="hidden" name="HEACGroup.ProgrammeId" value="@Model.HEACGroup.ProgrammeId" />
+                    <input type="hidden" name="HEACGroup.ProgrammeName" value="@Model.HEACGroup.ProgrammeName" />
+                </div>
+            </div>
+        }
+
+        <!-- Buttons -->
+        <div class="form-group mt-4 d-flex justify-content-start">
+            <button type="submit" class="btn btn-warning px-4 me-2">Save Changes</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

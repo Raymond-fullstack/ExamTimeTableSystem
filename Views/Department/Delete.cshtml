@@ -1,0 +1,31 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Delete Department";
+}
+
+<div class="form-container delete">
+    <h1 style="color: red;">Delete</h1>
+    <h4>Department</h4>
+    <dl>
+        <dt>@Model.Name</dt>
+        <dd>@Model.Description</dd>
+    </dl>
+    <hr />
+
+    <form asp-action="Delete">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="DepartmentId" />
+
+        <div class="form-group mt-4">
+            <input type="submit" value="Confirm" class="btn btn-danger me-2" />
+            <a asp-action="Index" class="btn btn-outline-success">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

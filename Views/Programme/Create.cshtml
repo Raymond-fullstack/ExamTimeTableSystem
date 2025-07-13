@@ -1,0 +1,64 @@
+﻿@model Programme
+
+@{
+    ViewData["Title"] = "Create Programme";
+}
+
+<div class="form-container shadow p-4 bg-white rounded">
+    <h1 class="h4 text-primary mb-3"><i class="bi bi-journal-code me-2"></i>Create Programme</h1>
+    <hr class="mb-4" />
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <!-- Programme Name -->
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label fw-semibold"></label>
+            <input asp-for="Name" class="form-control shadow-sm" placeholder="Enter programme name" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <!-- Number of Students -->
+        <div class="form-group mb-3">
+            <label asp-for="NumberOfStudents" class="form-label fw-semibold"></label>
+            <input asp-for="NumberOfStudents" class="form-control shadow-sm" placeholder="Enter number of students" />
+            <span asp-validation-for="NumberOfStudents" class="text-danger small"></span>
+        </div>
+
+        <!-- Department Dropdown -->
+        <div class="form-group mb-3">
+            <label asp-for="DepartmentId" class="form-label fw-semibold">Departments</label>
+            <div class="input-group shadow-sm">
+                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.Departments">
+                    <option value=""> Select Department</option>
+                </select>
+            </div>
+            <span asp-validation-for="DepartmentId" class="text-danger small"></span>
+        </div>
+
+        <!-- Year Dropdown -->
+        <div class="form-group mb-3">
+            <label asp-for="YearId" class="form-label fw-semibold">Years</label>
+            <div class="input-group shadow-sm">
+                <span class="input-group-text"><i class="bi bi-clock-history"></i></span>
+                <select asp-for="YearId" class="form-select" asp-items="ViewBag.Years">
+                    <option value=""> Select Year of Study</option>
+                </select>
+            </div>
+            <span asp-validation-for="YearId" class="text-danger small"></span>
+        </div>
+
+        <!-- Submit and Back Buttons -->
+        <div class="form-group mt-4 d-flex justify-content-start">
+            <input type="submit" value="Create" class="btn btn-success px-4 me-2" />
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
