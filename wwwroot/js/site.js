@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.addEventListener("DOMContentLoaded", () => {
+    const emailInput = document.getElementById('emailInput');
+    const studentFields = document.querySelectorAll('.student-field');
+    const invigilatorFields = document.querySelectorAll('.invigilator-field');
 
-// Write your JavaScript code.
+    emailInput.addEventListener('input', function () {
+        const value = emailInput.value.toLowerCase();
+
+        if (value.endsWith("@busitema.ac.ug")) {
+            studentFields.forEach(el => el.classList.remove('d-none'));
+            invigilatorFields.forEach(el => el.classList.add('d-none'));
+        } else if (value.endsWith("@staff.busitema.ac.ug")) {
+            studentFields.forEach(el => el.classList.add('d-none'));
+            invigilatorFields.forEach(el => el.classList.remove('d-none'));
+        } else {
+            studentFields.forEach(el => el.classList.add('d-none'));
+            invigilatorFields.forEach(el => el.classList.add('d-none'));
+        }
+    });
+});

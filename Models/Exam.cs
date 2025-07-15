@@ -7,7 +7,7 @@ namespace ExamTimeTable.Models
     {
         [Key]
         public int ExamId { get; set; }
-        public DateOnly ExamDate { get; set; }
+        public DateTime ExamDate { get; set; }
 
         [Range(1,3)]
         public int Duration { get; set; }

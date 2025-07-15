@@ -1,0 +1,105 @@
+﻿@model ExamTimeTable.ViewModels.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<style>
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="container py-4">
+    <h3 class="fw-bold mb-4 text-primary">
+        <i class="bi bi-speedometer2 me-2"></i> Dashboard Overview
+    </h3>
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #2196f3, #21cbf3);">
+                <div class="card-body">
+                    <h6 class="card-title">Departments</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-building me-2"></i>@Model.TotalDepartments
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #4caf50, #81c784);">
+                <div class="card-body">
+                    <h6 class="card-title">Programmes</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-journal-code me-2"></i>@Model.TotalProgrammes
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #ff9800, #ffc107);">
+                <div class="card-body">
+                    <h6 class="card-title">Course Units</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-book me-2"></i>@Model.TotalCourseUnits
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #9c27b0, #ba68c8);">
+                <div class="card-body">
+                    <h6 class="card-title">Upcoming Exams</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-calendar3-week me-2"></i>@Model.UpcomingExams.Count
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Exams -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-gradient bg-primary text-white">
+            <h5 class="mb-0"><i class="bi bi-calendar-event me-2"></i> Upcoming Exams</h5>
+        </div>
+        <div class="card-body p-0">
+            @if (Model.UpcomingExams.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Course</th>
+                                <th>Date</th>
+                                <th>Start Time</th>
+                                <th>Duration</th>
+                                <th>Room</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var exam in Model.UpcomingExams)
+                            {
+                                <tr>
+                                    <td>@exam.CourseUnit?.Name</td>
+                                    <td>@exam.ExamDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@exam.StartTime</td>
+                                    <td>@exam.Duration</td>
+                                    @* <td>@exam.Room?.Name</td> *@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="p-4 text-muted text-center">
+                    <i class="bi bi-exclamation-circle me-1"></i> No upcoming exams scheduled.
+                </div>
+            }
+        </div>
+    </div>
+</div>

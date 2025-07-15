@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|c:\\users\\semakula raymond\\desktop\\mvc projects\\examtimetable\\areas\\identity\\pages\\account\\forgotpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|solutionrelative:areas\\identity\\pages\\account\\forgotpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|c:\\users\\semakula raymond\\desktop\\mvc projects\\examtimetable\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ForgotPasswordConfirmation.cshtml",
-              "DocumentMoniker": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
-              "ToolTip": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
-              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAJ8AAAAAAAAAAABgva8AAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-14T10:51:56.695Z",
+              "WhenOpened": "2025-07-15T18:09:43.892Z",
               "EditorCaption": ""
             }
           ]

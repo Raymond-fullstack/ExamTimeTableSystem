@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@{
     Layout = null;
 }
 
@@ -140,10 +143,9 @@
             }
 
         @@media (max-width: 768px) {
-            #sidebar
-
-        {
+            #sidebar{
             transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
         }
 
         #sidebar.show {
@@ -171,7 +173,8 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar" class="d-flex flex-column">
-            <h4 class="text-center mb-4">ExamTimeTable</h4>
+            <img src="~/Images/busitema_logo.png" alt="University Badge" class="logo" />
+            <h4 class="text-center mb-4">ExamTimeTable System</h4>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a class="nav-link @isActiveController("Dashboard")" asp-controller="Dashboard" asp-action="Index">
@@ -230,10 +233,69 @@
                         <button class="btn btn-outline-primary d-md-none me-3" id="toggleSidebar">
                             <i class="bi bi-list"></i>
                         </button>
-                        <span class="navbar-brand fw-bold">Admin Dashboard</span>
+                        @{
+                            var hour = DateTime.Now.Hour;
+                            string greeting;
+                            string icon;
+
+                            if (hour < 12)
+                            {
+                                greeting = "Good Morning";
+                                icon = "bi bi-sun-fill text-warning";
+                            }
+                            else if (hour < 17)
+                            {
+                                greeting = "Good Afternoon";
+                                icon = "bi bi-brightness-high-fill text-primary";
+                            }
+                            else
+                            {
+                                greeting = "Good Evening";
+                                icon = "bi bi-moon-stars-fill text-info";
+                            }
+
+                            string fullName = "Guest";
+
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                var user = await UserManager.GetUserAsync(User);
+                                fullName = user?.FullName ?? User.Identity.Name;
+                            }
+                        }
+
+                        <span class="me-3">
+                            <i class="@icon"></i> @greeting, <strong>@fullName</strong>
+                        </span>
+
+
                         <div class="ms-auto d-flex align-items-center">
-                            <span class="me-3">Welcome, Admin</span>
-                            <a href="#" class="btn btn-outline-secondary btn-sm">Logout</a>
+                            @* @if (SignInManager.IsSignedIn(User))
+                            {
+                                var user = await UserManager.GetUserAsync(User);
+                                <span class="me-3">Welcome, @user?.FullName</span>
+                            } *@
+                            <div class="dropdown">
+                                <a class="btn btn-light border dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear me-1"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" asp-area="Identity" asp-page="/Account/Manage/Index">
+                                            <i class="bi bi-person-circle me-2 text-primary"></i> Manage Account
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <form method="post" asp-area="Identity" asp-page="/Account/Logout" id="logoutForm">
+                                            <button type="submit" class="dropdown-item d-flex align-items-center">
+                                                <i class="bi bi-box-arrow-right me-2 text-danger"></i> Logout
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
                         </div>
                     </div>
                 </nav>

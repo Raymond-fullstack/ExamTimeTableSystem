@@ -6,7 +6,7 @@
 }
 
 <div class="text-center mb-4">
-    <h4 class="text-primary mt-2">Busitema University Registration</h4>
+    <h4 class="text-primary mt-2">ExamTimeTable System Registration</h4>
 </div>
 
 <form method="post">
@@ -22,14 +22,14 @@
     <!-- Phone Number -->
     <div class="form-group mb-3">
         <label asp-for="Input.PhoneNumber" class="form-label"><i class="bi bi-telephone"></i> Phone Number</label>
-        <input asp-for="Input.PhoneNumber" class="form-control" />
+        <input type="tel" asp-for="Input.PhoneNumber" class="form-control" />
         <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
     </div>
 
     <!-- Email -->
     <div class="form-group mb-3">
         <label asp-for="Input.Email" class="form-label"><i class="bi bi-envelope"></i> Email</label>
-        <input asp-for="Input.Email" class="form-control" id="emailInput" />
+        <input type="email" asp-for="Input.Email" class="form-control" id="emailInput" />
         <span asp-validation-for="Input.Email" class="text-danger"></span>
     </div>
 
@@ -44,7 +44,7 @@
     <div class="form-group mb-3 student-field d-none">
         <label asp-for="Input.ProgrammeId" class="form-label"><i class="bi bi-journal-code"></i> Programme</label>
         <select asp-for="Input.ProgrammeId" asp-items="Model.Programmes" class="form-select">
-            <option value="">-- Select Programme --</option>
+            <option value=""> Select Programme</option>
         </select>
         <span asp-validation-for="Input.ProgrammeId" class="text-danger"></span>
     </div>
@@ -53,7 +53,7 @@
     <div class="form-group mb-3 student-field d-none">
         <label asp-for="Input.YearId" class="form-label"><i class="bi bi-clock-history"></i> Year of Study</label>
         <select asp-for="Input.YearId" asp-items="Model.Years" class="form-select">
-            <option value="">-- Select Year --</option>
+            <option value=""> Select Year</option>
         </select>
         <span asp-validation-for="Input.YearId" class="text-danger"></span>
     </div>
@@ -62,7 +62,7 @@
     <div class="form-group mb-3 invigilator-field d-none">
         <label asp-for="Input.DepartmentId" class="form-label"><i class="bi bi-building"></i> Department</label>
         <select asp-for="Input.DepartmentId" asp-items="Model.Departments" class="form-select">
-            <option value="">-- Select Department --</option>
+            <option value=""> Select Department</option>
         </select>
         <span asp-validation-for="Input.DepartmentId" class="text-danger"></span>
     </div>
@@ -71,7 +71,7 @@
     <div class="form-group mb-3">
         <label asp-for="Input.Password" class="form-label"><i class="bi bi-lock"></i> Password</label>
         <div class="input-group">
-            <input asp-for="Input.Password" class="form-control" id="passwordInput" />
+            <input type="password" asp-for="Input.Password" class="form-control" id="passwordInput" />
             <span class="input-group-text" id="togglePassword" style="cursor:pointer">
                 <i class="bi bi-eye-slash" id="eyeIcon"></i>
             </span>
@@ -83,7 +83,7 @@
     <div class="form-group mb-3">
         <label asp-for="Input.ConfirmPassword" class="form-label"><i class="bi bi-lock-fill"></i> Confirm Password</label>
         <div class="input-group">
-            <input asp-for="Input.ConfirmPassword" class="form-control" id="passwordInput" />
+            <input type="password" asp-for="Input.ConfirmPassword" class="form-control" id="passwordInput" />
             <span class="input-group-text" id="togglePassword" style="cursor:pointer">
                 <i class="bi bi-eye-slash" id="eyeIcon"></i>
             </span>
@@ -104,24 +104,24 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        const emailInput = document.getElementById('emailInput');
-        const studentFields = document.querySelectorAll('.student-field');
-        const invigilatorFields = document.querySelectorAll('.invigilator-field');
+        // const emailInput = document.getElementById('emailInput');
+        // const studentFields = document.querySelectorAll('.student-field');
+        // const invigilatorFields = document.querySelectorAll('.invigilator-field');
 
-        emailInput.addEventListener('input', function () {
-            const value = emailInput.value.toLowerCase();
+        // emailInput.addEventListener('input', function () {
+        //     const value = emailInput.value.toLowerCase();
 
-            if (value.endsWith("busitema.ac.ug")) {
-                studentFields.forEach(el => el.classList.remove('d-none'));
-                invigilatorFields.forEach(el => el.classList.add('d-none'));
-            } else if (value.endsWith("staff.busitema.ac.ug")) {
-                studentFields.forEach(el => el.classList.add('d-none'));
-                invigilatorFields.forEach(el => el.classList.remove('d-none'));
-            } else {
-                studentFields.forEach(el => el.classList.add('d-none'));
-                invigilatorFields.forEach(el => el.classList.add('d-none'));
-            }
-        });
+        //     if (value.endsWith("@@busitema.ac.ug")) {
+        //         studentFields.forEach(el => el.classList.remove('d-none'));
+        //         invigilatorFields.forEach(el => el.classList.add('d-none'));
+        //     } else if (value.endsWith("@@staff.busitema.ac.ug")) {
+        //         studentFields.forEach(el => el.classList.add('d-none'));
+        //         invigilatorFields.forEach(el => el.classList.remove('d-none'));
+        //     } else {
+        //         studentFields.forEach(el => el.classList.add('d-none'));
+        //         invigilatorFields.forEach(el => el.classList.add('d-none'));
+        //     }
+        // });
 
         // Toggle password visibility
         document.getElementById("togglePassword").addEventListener("click", function () {

@@ -1,0 +1,152 @@
+﻿@model UserListViewModel
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div class="container-fluid px-4 py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-primary"><i class="bi bi-people me-2"></i>Manage Users</h3>
+        <form method="get" class="d-flex">
+            <input name="search" class="form-control me-2" type="search" placeholder="Search by name or email..." value="@Model.SearchQuery" />
+            <button class="btn btn-outline-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Admins & Invigilators Table -->
+    <h5 class="mt-4 text-success"><i class="bi bi-person-badge-fill me-1"></i> Invigilators & Admins</h5>
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped mb-0 align-middle">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.AdminsAndInvigilators)
+                        {
+                            <tr class="text-center align-middle">
+                                <td>@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <span class="badge bg-@GetRoleBadgeColor(user.Role)">@user.Role</span>
+                                </td>
+                                <td>@user.Department</td>
+                                <td>
+                                    <form asp-action="ChangeRole" method="post" class="d-flex justify-content-center align-items-center">
+                                        <input type="hidden" name="userId" value="@user.Id" />
+                                        <select name="newRole" class="form-select form-select-sm w-auto me-2">
+                                            <option value="User">User</option>
+                                            <option value="Invigilator" selected="@(user.Role == "Invigilator")">Invigilator</option>
+                                            <option value="Admin" selected="@(user.Role == "Admin")">Admin</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-check-circle"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination for Admins -->
+            @if (Model.AdminTotalPages > 1)
+            {
+                <nav class="mt-3">
+                    <ul class="pagination justify-content-center">
+                        @for (int i = 1; i <= Model.AdminTotalPages; i++)
+                        {
+                            <li class="page-item @(Model.AdminCurrentPage == i ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { adminPage = i, studentPage = Model.StudentCurrentPage, search = Model.SearchQuery })">@i</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+
+    <!-- Students Table -->
+    <h5 class="mt-4 text-secondary"><i class="bi bi-person-lines-fill me-1"></i> Students</h5>
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped mb-0 align-middle">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Programme</th>
+                            <th>Year</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Students)
+                        {
+                            <tr class="text-center align-middle">
+                                <td>@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td><span class="badge bg-secondary">@user.Role</span></td>
+                                <td>@user.Programme</td>
+                                <td>@user.Year</td>
+                                <td>
+                                    <form asp-action="ChangeRole" method="post" class="d-flex justify-content-center align-items-center">
+                                        <input type="hidden" name="userId" value="@user.Id" />
+                                        <select name="newRole" class="form-select form-select-sm w-auto me-2">
+                                            <option value="User" selected="@(user.Role == "User")">User</option>
+                                            <option value="Invigilator">Invigilator</option>
+                                            <option value="Admin">Admin</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-check-circle"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination for Students -->
+            @if (Model.StudentTotalPages > 1)
+            {
+                <nav class="mt-3">
+                    <ul class="pagination justify-content-center">
+                        @for (int i = 1; i <= Model.StudentTotalPages; i++)
+                        {
+                            <li class="page-item @(Model.StudentCurrentPage == i ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { adminPage = Model.AdminCurrentPage, studentPage = i, search = Model.SearchQuery })">@i</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    string GetRoleBadgeColor(string role)
+    {
+        return role switch
+        {
+            "SystemAdmin" => "danger",
+            "Admin" => "warning",
+            "Invigilator" => "success",
+            _ => "secondary"
+        };
+    }
+}
+>

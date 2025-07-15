@@ -7,7 +7,7 @@ namespace ExamTimeTable.Models
         [Key]
         public int InvigilatorId { get; set; }
 
-        [StringLength(50, ErrorMessage = "Your Name is too long")]
+        [StringLength(50, ErrorMessage = "Invigilators is too long")]
         public string? Name { get; set; }
 
         [DataType(DataType.PhoneNumber)]

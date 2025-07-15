@@ -1,0 +1,18 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = "Registration Complete";
+}
+
+<div class="text-center">
+    <img src="~/images/success1.png" alt="University Logo" style="max-width: 100px;" class="mb-3" />
+
+    <h2 class="text-success fw-bold"><i class="bi bi-check-circle-fill me-2"></i> Registration Successful!</h2>
+
+    <p class="mt-3">Your account has been created successfully. You can now log in using your credentials.</p>
+
+    <a asp-page="/Account/Login" class="btn btn-primary mt-4">
+        <i class="bi bi-box-arrow-in-right"></i> Go to Login
+    </a>
+</div>

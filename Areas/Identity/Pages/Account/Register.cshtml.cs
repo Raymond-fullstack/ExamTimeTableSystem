@@ -92,7 +92,7 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
 
             // Student-specific
             [Display(Name = "Student Number")]
-            public string? StudentNumber { get; set; }
+            public string StudentNumber { get; set; }
 
             [Display(Name = "Program")]
             public int? ProgrammeId { get; set; }
@@ -153,7 +153,7 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
                     ProfilePicture = "default.png"
                 };
 
-                // Determine user type based on email
+                // Determine user type
                 if (Input.Email.EndsWith("@busitema.ac.ug") && !Input.Email.Contains("@staff."))
                 {
                     // Student
@@ -170,10 +170,10 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    // Assign Role
+                    // Assign role
                     if (Input.Email.EndsWith("@busitema.ac.ug") && !Input.Email.Contains("@staff."))
                     {
-                        await _userManager.AddToRoleAsync(user, "Student");
+                        await _userManager.AddToRoleAsync(user, "User");
                     }
                     else if (Input.Email.EndsWith("@staff.busitema.ac.ug"))
                     {
@@ -181,8 +181,13 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
                     }
 
                     _logger.LogInformation("User created a new account with password.");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+
+                    // Auto-confirm email
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    await _userManager.ConfirmEmailAsync(user, token);
+
+                    // Redirect to confirmation page instead of login
+                    return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
                 }
 
                 foreach (var error in result.Errors)
@@ -191,7 +196,7 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed — reload dropdowns
+            // Reload dropdowns on failure
             Programmes = new SelectList(await _context.Programmes.Include(p => p.Year)
                 .Select(p => new
                 {
@@ -204,6 +209,7 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
 
             return Page();
         }
+
 
 
         private ApplicationUser CreateUser()

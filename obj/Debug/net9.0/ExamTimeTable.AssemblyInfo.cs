@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ExamTimeTable")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+825df418129852edfbdaa592247a1ad5a93bbd7b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6acbf033e5d26ed5fa815a0b6bd9515f13f310c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ExamTimeTable")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ExamTimeTable")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
