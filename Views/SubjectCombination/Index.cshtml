@@ -78,9 +78,14 @@ else
                         <a asp-action="Edit" asp-route-id="@combo.SubjectCombinationId" class="btn btn-sm btn-warning me-2">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
-                        <a asp-action="Delete" asp-route-id="@combo.SubjectCombinationId" class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i> Delete
-                        </a>
+
+                        @if (User.IsInRole("SystemAdmin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@combo.SubjectCombinationId" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        }
+                        
                     </div>
                 </div>
             </div>

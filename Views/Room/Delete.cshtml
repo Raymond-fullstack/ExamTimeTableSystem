@@ -1,0 +1,39 @@
+﻿@model Room
+
+@{
+    ViewData["Title"] = "Delete Department";
+}
+
+<div class="form-container delete">
+    <h1 class="h4 text-danger mb-3"><i class="bi bi-door-open"></i> Delete Room</h1>
+    <div class="card h-100 shadow-sm border-0 transition">
+        <div class="card-body">
+            <h5 class="card-title text-primary fw-semibold">
+                <i class="bi bi-bank2 me-2"></i>@Model.Code
+            </h5>
+            <p class="card-text text-muted">
+                <i class="bi bi-grid-fill me-1"></i> @Model.Block
+            </p>
+            <p class="card-text text-muted">
+                <i class="bi bi-people-fill me-1"></i> @Model.Capacity
+            </p>
+        </div>
+    </div>
+    <hr />
+
+    <form asp-action="Delete">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="RoomId" />
+
+        <div class="form-group mt-4">
+            <input type="submit" value="Confirm" class="btn btn-danger me-2" />
+            <a asp-action="Index" class="btn btn-outline-success">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

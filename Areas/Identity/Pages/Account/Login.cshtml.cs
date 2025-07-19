@@ -89,8 +89,17 @@ namespace ExamTimeTable.Areas.Identity.Pages.Account
         {
             if (_signInManager.IsSignedIn(User))
             {
-                Response.Redirect("/Dashboard");
-                return;
+                if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin") || User.IsInRole("Invigilator"))
+                {
+                    Response.Redirect("/Dashboard");
+                    return;
+                } 
+                else
+                {
+                    Response.Redirect("/Exam");
+                    return;
+                }
+                
             }
 
             if (!string.IsNullOrEmpty(ErrorMessage))

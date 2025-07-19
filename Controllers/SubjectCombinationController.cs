@@ -1,11 +1,13 @@
 ﻿using ExamTimeTable.Data;
 using ExamTimeTable.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamTimeTable.Controllers
 {
+    [Authorize(Roles = "SystemAdmin, Admin")]
     public class SubjectCombinationController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -164,6 +166,7 @@ namespace ExamTimeTable.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "SystemAdmin")]
         public async Task<IActionResult> Delete(int id)
         {
             var combination = await _context.SubjectCombinations

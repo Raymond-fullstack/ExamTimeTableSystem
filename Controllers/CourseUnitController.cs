@@ -1,12 +1,14 @@
 ﻿using ExamTimeTable.Data;
 using ExamTimeTable.Models;
 using ExamTimeTable.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamTimeTable.Controllers
 {
+    [Authorize(Roles = "SystemAdmin, Admin")]
     public class CourseUnitController : Controller
     {
         private readonly ApplicationDbContext _context;

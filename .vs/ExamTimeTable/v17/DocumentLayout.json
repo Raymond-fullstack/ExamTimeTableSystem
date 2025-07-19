@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|c:\\users\\semakula raymond\\desktop\\mvc projects\\examtimetable\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|solutionrelative:views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|c:\\users\\semakula raymond\\desktop\\mvc projects\\examtimetable\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E421E2E-3AAB-4550-86D1-3C30CA46FF8C}|ExamTimeTable.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +19,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Views\\Dashboard\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Dashboard\\Index.cshtml",
-              "ToolTip": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Views\\Dashboard\\Index.cshtml",
-              "RelativeToolTip": "Views\\Dashboard\\Index.cshtml",
-              "ViewState": "AgIAABsAAAAAMDMzMzPjv1gAAAA7AAAAAAAAAA==",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\SEMAKULA RAYMOND\\Desktop\\MVC Projects\\ExamTimeTable\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAABYvScAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-15T18:16:05.016Z",
+              "WhenOpened": "2025-07-19T11:41:00.156Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             }
           ]
         }

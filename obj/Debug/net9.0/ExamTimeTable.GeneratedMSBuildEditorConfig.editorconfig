@@ -112,6 +112,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlVW5pdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Dashboard/GenerateTimeTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEdlbmVyYXRlVGltZVRhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -132,12 +136,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Exam/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Invigilator/Assign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52aWdpbGF0b3JcQXNzaWduLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Invigilator/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52aWdpbGF0b3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Programme/Create.cshtml]
@@ -154,6 +170,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Programme/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZ3JhbW1lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Room/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Room/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Room/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Room/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/SEMAKULA RAYMOND/Desktop/MVC Projects/ExamTimeTable/Views/Shared/Error.cshtml]

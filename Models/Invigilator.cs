@@ -13,8 +13,8 @@ namespace ExamTimeTable.Models
         [DataType(DataType.PhoneNumber)]
         public string? PhoneNumber { get; set; }
 
-        //One to many relationship with rooms
-        public ICollection<Room> Rooms { get; set; }
+        //Relationship with ExamRoomInvigilator
+        public ICollection<ExamRoomInvigilator> ExamRoomAssignments { get; set; } = new List<ExamRoomInvigilator>();
 
         //An invigilator belongs to a certain department
         public int DepartmentId { get; set; }

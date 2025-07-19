@@ -1,6 +1,7 @@
-﻿@model ExamTimeTable.ViewModels.AdminDashboardViewModel
+﻿@using ExamTimeTable.ViewModels
+@model AdminDashboardViewModel
 @{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = "Dashboard";
 }
 
 <style>
@@ -15,6 +16,13 @@
     <h3 class="fw-bold mb-4 text-primary">
         <i class="bi bi-speedometer2 me-2"></i> Dashboard Overview
     </h3>
+
+    @* <div class="d-flex justify-content-end mb-3">
+        <a asp-controller="Dashboard" asp-action="GenerateTimetable" class="btn btn-outline-primary shadow-sm">
+            <i class="bi bi-gear-fill me-1"></i> Generate Exam Timetable
+        </a>
+    </div> *@
+
 
     <!-- Summary Cards -->
     <div class="row g-4 mb-4">
@@ -58,7 +66,30 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #18c729, #fef500);">
+                <div class="card-body">
+                    <h6 class="card-title">Rooms</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-door-open me-2"></i>@Model.TotalRooms
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #2800ff, #08f1d9);">
+                <div class="card-body">
+                    <h6 class="card-title">Invigilators</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-person-badge-fill me-2"></i>@Model.TotalInvigilators
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
+    
+
+
 
     <!-- Upcoming Exams -->
     <div class="card shadow-sm border-0">

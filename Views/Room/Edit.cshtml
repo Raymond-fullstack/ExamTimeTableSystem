@@ -1,0 +1,48 @@
+﻿@model Room
+
+@{
+    ViewData["Title"] = "Edit Room";
+}
+
+<div class="form-container shadow p-4 bg-white rounded">
+    <h1 class="h4 text-warning mb-3"><i class="bi bi-door-open"></i>Edit Room</h1>
+    <hr class="mb-4" />
+
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="RoomId" />
+
+        <!-- Room Code -->
+        <div class="form-group mb-3">
+            <label asp-for="Code" class="form-label fw-semibold"></label>
+            <input asp-for="Code" class="form-control shadow-sm" placeholder="Enter room code" />
+            <span asp-validation-for="Code" class="text-danger small"></span>
+        </div>
+
+        <!-- Room Block -->
+        <div class="form-group mb-3">
+            <label asp-for="Block" class="form-label fw-semibold"></label>
+            <input asp-for="Block" class="form-control shadow-sm" placeholder="Enter building block" />
+            <span asp-validation-for="Block" class="text-danger small"></span>
+        </div>
+
+        <!-- Room Capacity-->
+        <div class="form-group mb-3">
+            <label asp-for="Capacity" class="form-label fw-semibold"></label>
+            <input asp-for="Capacity" class="form-control shadow-sm" placeholder="Enter room capacity" />
+            <span asp-validation-for="Capacity" class="text-danger small"></span>
+        </div>
+
+        <!-- Submit and Back Buttons -->
+        <div class="form-group mt-4 d-flex justify-content-start">
+            <input type="submit" value="Save Changes" class="btn btn-warning px-4 me-2" />
+            <a asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

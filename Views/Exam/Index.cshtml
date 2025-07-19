@@ -1,0 +1,260 @@
+﻿@model IEnumerable<Exam>
+
+@{
+    ViewData["Title"] = "Exam Timetable";
+    var groupedExams = Model.GroupBy(e => e.ExamDate.Date).OrderBy(g => g.Key);
+}
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Exam Timetable</h5>
+        @if (User.IsInRole("SystemAdmin"))
+        {
+            <div>
+                <button class="btn btn-warning" id="generateBtn" data-bs-toggle="modal" data-bs-target="#generateModal">
+                    <i class="bi bi-calendar-plus"></i> Generate New
+                </button>
+            </div>
+        }
+
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search exams...">
+                </div>
+            </div>
+            <div class="col-md-6 text-end">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary active" id="fullViewBtn">Full View</button>
+                    <button type="button" class="btn btn-outline-primary" id="weekViewBtn">Week View</button>
+                    <button type="button" class="btn btn-outline-primary" id="dayViewBtn">Day View</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="fullView">
+            @foreach (var dayGroup in groupedExams)
+            {
+                <div class="card mb-4">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">@dayGroup.Key.ToString("dddd, MMMM dd, yyyy")</h6>
+                        <span class="badge bg-primary">@dayGroup.Count() exams</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-center mb-3"><i class="bi bi-sun"></i> Morning Session (9AM - 12PM)</h6>
+                                @foreach (var exam in dayGroup.Where(e => e.StartTime == new TimeOnly(9, 0)).OrderBy(e => e.CourseUnit.Code))
+                                {
+                                    <div class="card mb-3 exam-card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="card-title text-primary">@exam.CourseUnit.Code - @exam.CourseUnit.Name</h6>
+                                                    <p class="card-text mb-1">
+                                                        <i class="bi bi-people"></i> @exam.CourseUnit.EstimatedParticipants students
+                                                    </p>
+                                                    <p class="card-text mb-1">
+                                                        <i class="bi bi-door-open"></i> @string.Join(", ", exam.ExamRooms.Select(er => er.Room.Code))
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <i class="bi bi-person-check"></i> @string.Join(", ", exam.ExamRooms.SelectMany(er => er.Invigilators.Select(i => i.Invigilator.Name)))
+                                                    </p>
+                                                </div>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                        <i class="bi bi-gear"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item" asp-action="Details" asp-route-id="@exam.ExamId">
+                                                                <i class="bi bi-eye"></i> View Details
+                                                            </a>
+                                                        </li>
+                                                        @if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin"))
+                                                        {
+                                                            <li>
+                                                                <button class="dropdown-item reschedule-btn" data-exam-id="@exam.ExamId">
+                                                                    <i class="bi bi-calendar-event"></i> Reschedule
+                                                                </button>
+                                                            </li>
+                                                        }
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-center mb-3"><i class="bi bi-moon"></i> Afternoon Session (2PM - 5PM)</h6>
+                                @foreach (var exam in dayGroup.Where(e => e.StartTime == new TimeOnly(14, 0)).OrderBy(e => e.CourseUnit.Code))
+                                {
+                                    <div class="card mb-3 exam-card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="card-title text-primary">@exam.CourseUnit.Code - @exam.CourseUnit.Name</h6>
+                                                    <p class="card-text mb-1">
+                                                        <i class="bi bi-people"></i> @exam.CourseUnit.EstimatedParticipants students
+                                                    </p>
+                                                    <p class="card-text mb-1">
+                                                        <i class="bi bi-door-open"></i> @string.Join(", ", exam.ExamRooms.Select(er => er.Room.Code))
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <i class="bi bi-person-check"></i> @string.Join(", ", exam.ExamRooms.SelectMany(er => er.Invigilators.Select(i => i.Invigilator.Name)))
+                                                    </p>
+                                                </div>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                        <i class="bi bi-gear"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item" asp-action="Details" asp-route-id="@exam.ExamId">
+                                                                <i class="bi bi-eye"></i> View Details
+                                                            </a>
+                                                        </li>
+                                                        @if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin"))
+                                                        {
+                                                            <li>
+                                                                <button class="dropdown-item reschedule-btn" data-exam-id="@exam.ExamId">
+                                                                    <i class="bi bi-calendar-event"></i> Reschedule
+                                                                </button>
+                                                            </li>
+                                                        }
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Week and Day views would be implemented similarly but with different grouping -->
+    </div>
+</div>
+
+<!-- Generate Timetable Modal -->
+<div class="modal fade" id="generateModal" tabindex="-1" aria-labelledby="generateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="generateModalLabel">Generate New Timetable</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="GenerateTimetable" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate"
+                               min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                               value="@DateTime.Today.AddDays(7).ToString("yyyy-MM-dd")" required>
+                        <div class="form-text">Timetable will be generated for 15 working days from this date</div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle"></i> This will replace any existing timetable!
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Generate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Reschedule Modal -->
+<div class="modal fade" id="rescheduleModal" tabindex="-1" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="rescheduleModalLabel">Reschedule Exam</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="rescheduleForm" method="post">
+                <input type="hidden" id="rescheduleExamId" name="examId">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="rescheduleDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="rescheduleDate" name="newDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Time Slot</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="timeSlot" id="morningSlot" value="Morning" checked>
+                            <label class="form-check-label" for="morningSlot">
+                                Morning (9AM - 12PM)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="timeSlot" id="afternoonSlot" value="Afternoon">
+                            <label class="form-check-label" for="afternoonSlot">
+                                Afternoon (2PM - 5PM)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Reschedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Search functionality
+            $('#searchInput').on('keyup', function() {
+                const searchText = $(this).val().toLowerCase();
+                $('.exam-card').each(function() {
+                    const cardText = $(this).text().toLowerCase();
+                    $(this).toggle(cardText.includes(searchText));
+                });
+            });
+
+            // Reschedule button click
+            $('.reschedule-btn').click(function() {
+                const examId = $(this).data('exam-id');
+                $('#rescheduleExamId').val(examId);
+                $('#rescheduleModal').modal('show');
+            });
+
+            // Form submission for rescheduling
+            $('#rescheduleForm').submit(function(e) {
+                e.preventDefault();
+                const examId = $('#rescheduleExamId').val();
+                const newDate = $('#rescheduleDate').val();
+                const timeSlot = $('input[name="timeSlot"]:checked').val();
+
+                $.post('@Url.Action("Reschedule", "Exam")', {
+                    examId: examId,
+                    newDate: newDate,
+                    timeSlot: timeSlot
+                }, function() {
+                    $('#rescheduleModal').modal('hide');
+                    location.reload(); // Refresh to see changes
+                }).fail(function() {
+                    alert('Error rescheduling exam');
+                });
+            });
+
+            // Initialize date picker for reschedule
+            $('#rescheduleDate').val(new Date().toISOString().split('T')[0]);
+        });
+    </script>
+}

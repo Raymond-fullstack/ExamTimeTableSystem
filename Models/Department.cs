@@ -18,7 +18,7 @@ namespace ExamTimeTable.Models
         ////A Department handles multiple years of study
         //public ICollection<Year>? Years { get; set; }
 
-        //Many Ptogrammmes can be under a given department
+        //Many Programmmes can be under a given department
         public ICollection<Programme>? Programmes { get; set; }
 
         //An invigilator may belong to a given number

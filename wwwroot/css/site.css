@@ -29,3 +29,35 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Exam Timetable Specific Styles */
+.exam-card {
+    transition: all 0.2s ease;
+    border-left: 4px solid #43a047;
+}
+
+    .exam-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+.card-header h6 {
+    font-weight: 600;
+}
+
+#fullViewBtn.active, #weekViewBtn.active, #dayViewBtn.active {
+    background-color: #43a047;
+    color: white;
+    border-color: #43a047;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body .row > div {
+        margin-bottom: 1.5rem;
+    }
+
+    .exam-card {
+        margin-bottom: 1rem;
+    }
+}

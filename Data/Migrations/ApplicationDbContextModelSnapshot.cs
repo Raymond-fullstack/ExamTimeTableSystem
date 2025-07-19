@@ -192,8 +192,8 @@ namespace ExamTimeTable.Data.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("ExamDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("ExamDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SpecialInstructions")
                         .HasMaxLength(100)
@@ -225,6 +225,24 @@ namespace ExamTimeTable.Data.Migrations
                     b.ToTable("ExamRooms");
                 });
 
+            modelBuilder.Entity("ExamTimeTable.Models.ExamRoomInvigilator", b =>
+                {
+                    b.Property<int>("ExamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InvigilatorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ExamId", "RoomId", "InvigilatorId");
+
+                    b.HasIndex("InvigilatorId");
+
+                    b.ToTable("ExamRoomInvigilators");
+                });
+
             modelBuilder.Entity("ExamTimeTable.Models.Invigilator", b =>
                 {
                     b.Property<int>("InvigilatorId")
@@ -243,9 +261,14 @@ namespace ExamTimeTable.Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("int");
+
                     b.HasKey("InvigilatorId");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Invigilators");
                 });
@@ -317,6 +340,10 @@ namespace ExamTimeTable.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
 
+                    b.Property<string>("Block")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
@@ -324,12 +351,7 @@ namespace ExamTimeTable.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InvigilatorId")
-                        .HasColumnType("int");
-
                     b.HasKey("RoomId");
-
-                    b.HasIndex("InvigilatorId");
 
                     b.ToTable("Rooms");
                 });
@@ -640,6 +662,25 @@ namespace ExamTimeTable.Data.Migrations
                     b.Navigation("Room");
                 });
 
+            modelBuilder.Entity("ExamTimeTable.Models.ExamRoomInvigilator", b =>
+                {
+                    b.HasOne("ExamTimeTable.Models.Invigilator", "Invigilator")
+                        .WithMany("ExamRoomAssignments")
+                        .HasForeignKey("InvigilatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExamTimeTable.Models.ExamRoom", "ExamRoom")
+                        .WithMany("Invigilators")
+                        .HasForeignKey("ExamId", "RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExamRoom");
+
+                    b.Navigation("Invigilator");
+                });
+
             modelBuilder.Entity("ExamTimeTable.Models.Invigilator", b =>
                 {
                     b.HasOne("ExamTimeTable.Models.Department", "Department")
@@ -647,6 +688,10 @@ namespace ExamTimeTable.Data.Migrations
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ExamTimeTable.Models.Room", null)
+                        .WithMany("Invigilators")
+                        .HasForeignKey("RoomId");
 
                     b.Navigation("Department");
                 });
@@ -695,13 +740,6 @@ namespace ExamTimeTable.Data.Migrations
                     b.Navigation("Programme");
 
                     b.Navigation("Year");
-                });
-
-            modelBuilder.Entity("ExamTimeTable.Models.Room", b =>
-                {
-                    b.HasOne("ExamTimeTable.Models.Invigilator", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("InvigilatorId");
                 });
 
             modelBuilder.Entity("ExamTimeTable.Models.SubjectCombination", b =>
@@ -819,11 +857,16 @@ namespace ExamTimeTable.Data.Migrations
                     b.Navigation("ExamRooms");
                 });
 
+            modelBuilder.Entity("ExamTimeTable.Models.ExamRoom", b =>
+                {
+                    b.Navigation("Invigilators");
+                });
+
             modelBuilder.Entity("ExamTimeTable.Models.Invigilator", b =>
                 {
                     b.Navigation("ApplicationUsers");
 
-                    b.Navigation("Rooms");
+                    b.Navigation("ExamRoomAssignments");
                 });
 
             modelBuilder.Entity("ExamTimeTable.Models.Programme", b =>
@@ -838,6 +881,8 @@ namespace ExamTimeTable.Data.Migrations
             modelBuilder.Entity("ExamTimeTable.Models.Room", b =>
                 {
                     b.Navigation("ExamRooms");
+
+                    b.Navigation("Invigilators");
                 });
 
             modelBuilder.Entity("ExamTimeTable.Models.SubjectCombination", b =>

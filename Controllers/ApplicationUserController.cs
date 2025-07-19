@@ -73,7 +73,7 @@ public class ApplicationUserController : Controller
 
 
     [HttpPost]
-    [Authorize(Roles = "SystemAdmin,Admin")]
+    [Authorize(Roles = "SystemAdmin, Admin")]
     public async Task<IActionResult> ChangeRole(string userId, string newRole)
     {
         var user = await _userManager.FindByIdAsync(userId);

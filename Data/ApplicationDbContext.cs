@@ -17,6 +17,7 @@ namespace ExamTimeTable.Data
         public DbSet<DepartmentSubjectCombination> DepartmentSubjectCombinations { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<ExamRoom> ExamRooms { get; set; }
+        public DbSet<ExamRoomInvigilator> ExamRoomInvigilators { get; set; }
         public DbSet<Invigilator> Invigilators { get; set; }
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<ProgrammeCourseUnit> ProgrammeCourseUnits { get; set; }
@@ -130,8 +131,23 @@ namespace ExamTimeTable.Data
                 .HasOne(er => er.Room)
                 .WithMany(r => r.ExamRooms)
                 .HasForeignKey(er => er.RoomId);
-                //.OnDelete(DeleteBehavior.Cascade);
+            //.OnDelete(DeleteBehavior.Cascade);
 
+            // ExamRoomInvigilator composite key
+            modelBuilder.Entity<ExamRoomInvigilator>()
+                .HasKey(eri => new { eri.ExamId, eri.RoomId, eri.InvigilatorId });
+
+            // Relationship between ExamRoomInvigilator and ExamRoom
+            modelBuilder.Entity<ExamRoomInvigilator>()
+                .HasOne(eri => eri.ExamRoom)
+                .WithMany(er => er.Invigilators)
+                .HasForeignKey(eri => new { eri.ExamId, eri.RoomId });
+
+            // Relationship between ExamRoomInvigilator and Invigilator
+            modelBuilder.Entity<ExamRoomInvigilator>()
+                .HasOne(eri => eri.Invigilator)
+                .WithMany(i => i.ExamRoomAssignments)
+                .HasForeignKey(eri => eri.InvigilatorId);
         }
     }
 }

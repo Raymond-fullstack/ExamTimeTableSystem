@@ -1,0 +1,56 @@
+﻿@model List<ExamTimeTable.Models.Invigilator>
+@{
+    ViewData["Title"] = "Assigned Invigilators";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-primary"><i class="bi bi-person-badge-fill me-2"></i> Assigned Invigilators</h3>
+        <a asp-action="Assign" class="btn btn-success">
+            <i class="bi bi-plus-circle me-1"></i> Assign New Invigilator
+        </a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered mb-0 align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Department</th>
+                                <th style="width: 120px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var invigilator in Model)
+                            {
+                                <tr>
+                                    <td>@invigilator.Name</td>
+                                    <td>@invigilator.PhoneNumber</td>
+                                    <td>@invigilator.Department?.Name</td>
+                                    <td>
+                                        <form asp-action="Remove" asp-route-id="@invigilator.InvigilatorId" method="post" onsubmit="return confirm('Are you sure you want to remove this invigilator?');">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-x-circle"></i> Remove
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="bi bi-info-circle me-1"></i> No invigilators have been assigned yet.
+        </div>
+    }
+</div>

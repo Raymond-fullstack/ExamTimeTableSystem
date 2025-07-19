@@ -1,11 +1,13 @@
 ﻿using ExamTimeTable.Data;
 using ExamTimeTable.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamTimeTable.Controllers
 {
+    [Authorize(Roles = "SystemAdmin, Admin")]
     public class ProgrammeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -111,6 +113,7 @@ namespace ExamTimeTable.Controllers
             return View(programme);
         }
 
+        [Authorize(Roles = "SystemAdmin")]
         public async Task<IActionResult> Delete(int id)
         {
             var programme = await _context.Programmes

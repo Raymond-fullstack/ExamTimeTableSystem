@@ -14,6 +14,18 @@
     };
 }
 
+@{
+    string examLinkLabel = "Exam Area";
+    if (User.IsInRole("SystemAdmin"))
+    {
+        examLinkLabel = "Manage Exams";
+    }
+    else if (User.IsInRole("Admin") || User.IsInRole("Invigilator") || User.IsInRole("User"))
+    {
+        examLinkLabel = "View Timetable";
+    }
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +37,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Forms.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ExamTimeTable.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/Images/busitema-logo.png" />
     <style>
         * {
             box-sizing: border-box;
@@ -176,49 +189,65 @@
             <img src="~/Images/busitema_logo.png" alt="University Badge" class="logo" />
             <h4 class="text-center mb-4">ExamTimeTable System</h4>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a class="nav-link @isActiveController("Dashboard")" asp-controller="Dashboard" asp-action="Index">
-                        <i class="bi bi-speedometer2"></i> Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("ApplicationUser")" asp-controller="ApplicationUser" asp-action="Index">
-                        <i class="bi bi-people"></i> Manage Users
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("Department")" asp-controller="Department" asp-action="Index">
-                        <i class="bi bi-building"></i> Manage Departments
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("Programme")" asp-controller="Programme" asp-action="Index">
-                        <i class="bi bi-journal-code"></i> Manage Programs
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("SubjectCombination")" asp-controller="SubjectCombination" asp-action="Index">
-                        <i class="bi bi-layers"></i> Manage Combinations
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("CourseUnit")" asp-controller="CourseUnit" asp-action="Index">
-                        <i class="bi bi-book"></i> Manage CourseUnits
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("Room")" asp-controller="Room" asp-action="Index">
-                        <i class="bi bi-door-open"></i> Manage Rooms
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link @isActiveController("Invigilator")" asp-controller="Invigilator" asp-action="Index">
-                        <i class="bi bi-person-badge-fill"></i> Manage Invigilators
-                    </a>
-                </li>
+                @if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin") || User.IsInRole("Invigilator"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @isActiveController("Dashboard")" asp-controller="Dashboard" asp-action="Index">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("SystemAdmin"))
+                {
+                    <li>
+                        <a class="nav-link @isActiveController("ApplicationUser")" asp-controller="ApplicationUser" asp-action="Index">
+                            <i class="bi bi-people"></i> Manage Users
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="nav-link @isActiveController("Invigilator")" asp-controller="Invigilator" asp-action="Index">
+                            <i class="bi bi-person-badge-fill"></i> Manage Invigilators
+                        </a>
+                    </li>
+                }
+                
+                @if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="nav-link @isActiveController("Room")" asp-controller="Room" asp-action="Index">
+                            <i class="bi bi-door-open"></i> Manage Rooms
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link @isActiveController("Department")" asp-controller="Department" asp-action="Index">
+                            <i class="bi bi-building"></i> Manage Departments
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link @isActiveController("Programme")" asp-controller="Programme" asp-action="Index">
+                            <i class="bi bi-journal-code"></i> Manage Programs
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link @isActiveController("SubjectCombination")" asp-controller="SubjectCombination" asp-action="Index">
+                            <i class="bi bi-layers"></i> Manage Combinations
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link @isActiveController("CourseUnit")" asp-controller="CourseUnit" asp-action="Index">
+                            <i class="bi bi-book"></i> Manage CourseUnits
+                        </a>
+                    </li>
+                }
+                
                 <li>
                     <a class="nav-link @isActiveController("Exam")" asp-controller="Exam" asp-action="Index">
-                        <i class="bi bi-calendar3-week"></i> Manage Exams
+                        <i class="bi bi-calendar3-week"></i> @examLinkLabel
                     </a>
                 </li>
             </ul>
@@ -243,7 +272,7 @@
                                 greeting = "Good Morning";
                                 icon = "bi bi-sun-fill text-warning";
                             }
-                            else if (hour < 17)
+                            else if (hour < 15)
                             {
                                 greeting = "Good Afternoon";
                                 icon = "bi bi-brightness-high-fill text-primary";

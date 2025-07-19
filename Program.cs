@@ -22,6 +22,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
+builder.Services.AddScoped<IExamGenerationService, ExamGenerationService>();
+
+
 
 var app = builder.Build();
 
