@@ -5,11 +5,148 @@
 }
 
 <style>
-    .hover-lift:hover {
-        transform: translateY(-5px);
-        transition: all 0.2s ease-in-out;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    /* Custom styles for the dashboard to enhance professionalism */
+    :root {
+        --dashboard-card-bg-1: linear-gradient(135deg, #42a5f5, #2979ff); /* Blue */
+        --dashboard-card-bg-2: linear-gradient(135deg, #66bb6a, #43a047); /* Green */
+        --dashboard-card-bg-3: linear-gradient(135deg, #ab47bc, #8e24aa); /* Purple */
+        --dashboard-card-bg-4: linear-gradient(135deg, #ffa726, #fb8c00); /* Orange */
+        --dashboard-card-bg-5: linear-gradient(135deg, #ef5350, #d32f2f); /* Red */
+        --dashboard-card-bg-6: linear-gradient(135deg, #26c6da, #00acc1); /* Cyan */
+        --dashboard-card-bg-7: linear-gradient(135deg, #78909c, #546e7a); /* Grey-Blue */
+
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --hover-lift-shadow: 0 12px 28px rgba(0, 0, 0, 0.15); /* More pronounced lift */
     }
+
+    .dashboard-card {
+        border-radius: 12px; /* More rounded corners for a modern look */
+        overflow: hidden; /* Ensures gradient respects border-radius */
+        color: white; /* Text color for cards */
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        min-height: 120px; /* Ensure consistent card height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-8px); /* Lift effect on hover */
+        box-shadow: var(--hover-lift-shadow);
+    }
+
+    .dashboard-card .card-body {
+        padding: 1.5rem; /* Increased padding */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+    }
+
+    .dashboard-card .card-title {
+        font-size: 0.95rem;
+        opacity: 0.9; /* Slightly transparent for subheading effect */
+        margin-bottom: 0.5rem; /* Space below title */
+    }
+
+    .dashboard-card h3 {
+        font-size: 2.2rem; /* Larger numbers for impact */
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .dashboard-card h3 i {
+        font-size: 2rem; /* Consistent icon size with numbers */
+        margin-right: 0.8rem; /* Space between icon and number */
+    }
+
+    /* Upcoming Exams Table */
+    .upcoming-exams-card {
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+    }
+
+    .upcoming-exams-card .card-header {
+        background: linear-gradient(45deg, #1e88e5, #42a5f5); /* A vibrant but professional blue gradient */
+        color: white;
+        border-top-left-radius: 12px; /* Match card border-radius */
+        border-top-right-radius: 12px;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .upcoming-exams-card .card-header h5 {
+        font-size: 1.25rem; /* Standard header size */
+        font-weight: 600;
+    }
+
+    .upcoming-exams-card .card-body {
+        padding: 0; /* Remove padding from card body to allow table full width */
+    }
+
+    .upcoming-exams-table thead {
+        background-color: #f5f8fa; /* Light background for table header */
+    }
+
+    .upcoming-exams-table th {
+        font-weight: 600;
+        color: #555;
+        padding: 1rem 1.5rem; /* Consistent padding */
+    }
+
+    .upcoming-exams-table td {
+        padding: 1rem 1.5rem; /* Consistent padding */
+        vertical-align: middle;
+        font-size: 0.95rem;
+    }
+
+    .upcoming-exams-table tbody tr:last-child td {
+        border-bottom: none; /* No border on the last row */
+    }
+
+    .table-responsive {
+        border-radius: 0 0 12px 12px; /* Round bottom corners for the responsive table container */
+        overflow: hidden; /* Ensures inner table content respects border-radius */
+        border: 1px solid #e0e0e0; /* Subtle border for the table */
+        border-top: none; /* No top border as card header provides separation */
+    }
+
+    .alert-info-custom {
+        background-color: #e3f2fd; /* Light blue background */
+        color: #2196f3; /* Darker blue text */
+        border-color: #bbdefb; /* Slightly darker border */
+        border-radius: 8px;
+        padding: 1.25rem;
+        font-size: 1.05rem;
+    }
+
+    .action-button-group {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1.5rem;
+    }
+
+    .action-button-group .btn {
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .action-button-group .btn-primary {
+        background-color: #007bff; /* Standard Bootstrap primary blue */
+        border-color: #007bff;
+    }
+    .action-button-group .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
 </style>
 
 <div class="container py-4">
@@ -17,97 +154,121 @@
         <i class="bi bi-speedometer2 me-2"></i> Dashboard Overview
     </h3>
 
-    @* <div class="d-flex justify-content-end mb-3">
-        <a asp-controller="Dashboard" asp-action="GenerateTimetable" class="btn btn-outline-primary shadow-sm">
-            <i class="bi bi-gear-fill me-1"></i> Generate Exam Timetable
-        </a>
-    </div> *@
+    @* Example of an action button if needed on the dashboard directly *@
+    @if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin"))
+    {
+        @* <div class="action-button-group">
+            <a asp-controller="Exam" asp-action="GenerateTimetable" class="btn btn-primary shadow-sm">
+                <i class="bi bi-calendar-plus me-2"></i> Generate Exam Timetable
+            </a>
+        </div> *@
+    }
 
-
-    <!-- Summary Cards -->
-    <div class="row g-4 mb-4">
-        <div class="col-md-3">
-            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #2196f3, #21cbf3);">
+    <div class="row g-4 mb-5"> @* Increased bottom margin for separation *@
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-1);">
                 <div class="card-body">
                     <h6 class="card-title">Departments</h6>
                     <h3 class="fw-bold">
-                        <i class="bi bi-building me-2"></i>@Model.TotalDepartments
+                        <i class="bi bi-building"></i>@Model.TotalDepartments
                     </h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #4caf50, #81c784);">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-2);">
                 <div class="card-body">
                     <h6 class="card-title">Programmes</h6>
                     <h3 class="fw-bold">
-                        <i class="bi bi-journal-code me-2"></i>@Model.TotalProgrammes
+                        <i class="bi bi-journal-code"></i>@Model.TotalProgrammes
                     </h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #ff9800, #ffc107);">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-3);">
+                <div class="card-body">
+                    <h6 class="card-title">Course Combinations</h6>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-layers"></i>@Model.TotalCombinations
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-4);">
                 <div class="card-body">
                     <h6 class="card-title">Course Units</h6>
                     <h3 class="fw-bold">
-                        <i class="bi bi-book me-2"></i>@Model.TotalCourseUnits
+                        <i class="bi bi-book"></i>@Model.TotalCourseUnits
                     </h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #9c27b0, #ba68c8);">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-5);">
                 <div class="card-body">
                     <h6 class="card-title">Upcoming Exams</h6>
                     <h3 class="fw-bold">
-                        <i class="bi bi-calendar3-week me-2"></i>@Model.UpcomingExams.Count
+                        <i class="bi bi-calendar3-week"></i>@Model.UpcomingExams.Count
                     </h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #18c729, #fef500);">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-6);">
                 <div class="card-body">
                     <h6 class="card-title">Rooms</h6>
                     <h3 class="fw-bold">
-                        <i class="bi bi-door-open me-2"></i>@Model.TotalRooms
+                        <i class="bi bi-door-open"></i>@Model.TotalRooms
                     </h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm hover-lift border-0 text-white" style="background: linear-gradient(135deg, #2800ff, #08f1d9);">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="dashboard-card" style="background: var(--dashboard-card-bg-7);">
                 <div class="card-body">
                     <h6 class="card-title">Invigilators</h6>
                     <h3 class="fw-bold">
-                        <i class="bi bi-person-badge-fill me-2"></i>@Model.TotalInvigilators
+                        <i class="bi bi-person-badge-fill"></i>@Model.TotalInvigilators
                     </h3>
                 </div>
             </div>
         </div>
+        @* Add another card for Total Users if `ApplicationUser` controller is for SystemAdmin *@
+        @if (User.IsInRole("SystemAdmin"))
+        {
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="dashboard-card" style="background: linear-gradient(135deg, #007bff, #0056b3);">
+                    <div class="card-body">
+                        <h6 class="card-title">Total Students</h6>
+                        <h3 class="fw-bold">
+                            <i class="bi bi-people"></i>@Model.TotalUsers @* Assuming TotalUsers property exists in your ViewModel *@
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-    
 
 
-
-    <!-- Upcoming Exams -->
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-gradient bg-primary text-white">
+    <div class="card upcoming-exams-card">
+        <div class="card-header">
             <h5 class="mb-0"><i class="bi bi-calendar-event me-2"></i> Upcoming Exams</h5>
         </div>
-        <div class="card-body p-0">
-            @if (Model.UpcomingExams.Any())
+        <div class="card-body">
+            @if (Model.UpcomingExams != null && Model.UpcomingExams.Any())
             {
                 <div class="table-responsive">
-                    <table class="table table-striped align-middle mb-0">
+                    <table class="table table-striped align-middle mb-0 upcoming-exams-table">
                         <thead class="table-light">
                             <tr>
                                 <th>Course</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>Duration</th>
-                                <th>Room</th>
+                                <th>End Time</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -116,8 +277,9 @@
                                 <tr>
                                     <td>@exam.CourseUnit?.Name</td>
                                     <td>@exam.ExamDate.ToString("MMM dd, yyyy")</td>
-                                    <td>@exam.StartTime</td>
-                                    <td>@exam.Duration</td>
+                                    <td>@exam.StartTime.ToString("hh:mm tt")</td> @* Formatted time *@
+                                    <td>@exam.Duration hours</td> @* Added "minutes" for clarity *@
+                                    <td>@exam.EndTime.ToString("hh:mm tt")</td>
                                     @* <td>@exam.Room?.Name</td> *@
                                 </tr>
                             }
@@ -127,10 +289,84 @@
             }
             else
             {
-                <div class="p-4 text-muted text-center">
-                    <i class="bi bi-exclamation-circle me-1"></i> No upcoming exams scheduled.
+                <div class="p-4 text-muted text-center alert alert-info-custom">
+                    <i class="bi bi-info-circle-fill me-2"></i> No upcoming exams are currently scheduled.
                 </div>
             }
         </div>
     </div>
+
+    @*
+        Optional: Add sections for charts or recent activity here
+        Example:
+        <div class="row g-4 mt-5">
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Exams by Department (Chart Placeholder)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">A chart showing the distribution of exams across different departments would go here.</p>
+                        <canvas id="examsByDepartmentChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Recent Activity Log (Placeholder)</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">User John Doe added a new exam timetable. <small class="text-muted float-end">5 mins ago</small></li>
+                            <li class="list-group-item">Room B201 capacity updated by Admin. <small class="text-muted float-end">1 hour ago</small></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    *@
+
 </div>
+
+@section Scripts {
+    <script>
+        // Optional: If you integrate charts using a library like Chart.js
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const ctx = document.getElementById('examsByDepartmentChart');
+        //     if (ctx) {
+        //         new Chart(ctx, {
+        //             type: 'bar', // or 'pie', 'doughnut' etc.
+        //             data: {
+        //                 labels: ['Dept A', 'Dept B', 'Dept C', 'Dept D'],
+        //                 datasets: [{
+        //                     label: '# of Exams',
+        //                     data: [12, 19, 3, 5],
+        //                     backgroundColor: [
+        //                         'rgba(255, 99, 132, 0.7)',
+        //                         'rgba(54, 162, 235, 0.7)',
+        //                         'rgba(255, 206, 86, 0.7)',
+        //                         'rgba(75, 192, 192, 0.7)'
+        //                     ],
+        //                     borderColor: [
+        //                         'rgba(255, 99, 132, 1)',
+        //                         'rgba(54, 162, 235, 1)',
+        //                         'rgba(255, 206, 86, 1)',
+        //                         'rgba(75, 192, 192, 1)'
+        //                     ],
+        //                     borderWidth: 1
+        //                 }]
+        //             },
+        //             options: {
+        //                 responsive: true,
+        //                 scales: {
+        //                     y: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }
+        //             }
+        //         });
+        //     }
+        // });
+    </script>
+}

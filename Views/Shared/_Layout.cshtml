@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Forms.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ExamTimeTable.styles.css" asp-append-version="true" />
-    <link rel="icon" type="image/png" href="~/Images/busitema-logo.png" />
+    <link rel="icon" type="image/png" href="~/Images/busitema-logo-tp.png" />
     <style>
         * {
             box-sizing: border-box;
@@ -205,6 +205,11 @@
                             <i class="bi bi-people"></i> Manage Users
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link @isActiveController("Room")" asp-controller="Room" asp-action="Index">
+                            <i class="bi bi-door-open"></i> Manage Rooms
+                        </a>
+                    </li>
                 }
 
                 @if (User.IsInRole("Admin"))
@@ -218,11 +223,6 @@
                 
                 @if (User.IsInRole("SystemAdmin") || User.IsInRole("Admin"))
                 {
-                    <li>
-                        <a class="nav-link @isActiveController("Room")" asp-controller="Room" asp-action="Index">
-                            <i class="bi bi-door-open"></i> Manage Rooms
-                        </a>
-                    </li>
                     <li>
                         <a class="nav-link @isActiveController("Department")" asp-controller="Department" asp-action="Index">
                             <i class="bi bi-building"></i> Manage Departments

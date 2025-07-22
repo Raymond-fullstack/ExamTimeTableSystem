@@ -6,9 +6,11 @@ namespace ExamTimeTable.ViewModels
     {
         public int TotalDepartments { get; set; }
         public int TotalProgrammes { get; set; }
+        public int TotalCombinations { get; set; }
         public int TotalCourseUnits { get; set; }
         public int TotalRooms { get; set; }
         public int TotalInvigilators { get; set; }
+        public int TotalUsers { get; set; }
         public List<Exam> UpcomingExams { get; set; } = new();
     }
 }

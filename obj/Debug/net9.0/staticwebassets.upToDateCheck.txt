@@ -26,6 +26,7 @@ wwwroot\Images\bg-phone6.jpg
 wwwroot\Images\bg-phone7.jpg
 wwwroot\Images\bg-phone8.jpg
 wwwroot\Images\bg-phone9.jpg
+wwwroot\Images\busitema-logo-tp.png
 wwwroot\Images\busitema-logo.png
 wwwroot\Images\busitema-logo2.png
 wwwroot\Images\busitema-logo2tp.png
@@ -38,6 +39,7 @@ wwwroot\Images\goodbye1.jpg
 wwwroot\Images\goodbye2.jpg
 wwwroot\Images\goodbye3.jpg
 wwwroot\Images\profiles\cc9c77d2-5bb4-4ab7-a46a-0768d550a192.jpg
+wwwroot\Images\profiles\dbf6af79-3b06-4969-822c-1c29ed5b94b7.jpg
 wwwroot\Images\success1.png
 wwwroot\Images\success2.png
 wwwroot\Images\success3.jpg
@@ -102,68 +104,69 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\css\site.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\favicon.ico
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\js\site.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\additional-methods.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\LICENSE.md
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.min.map
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.slim.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.slim.min.js
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\Images\profiles\a2388577-0943-4554-925b-34e9909d6e33.jpg
 C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\LICENSE.txt
-C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\css\css\custom-dashboard.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.slim.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.slim.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.min.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery\dist\jquery.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\LICENSE.md
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation\dist\additional-methods.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\js\site.js
 C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\css\css\js\dashboard.js
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\css\css\custom-dashboard.css
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\favicon.ico
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\css\site.css
 C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\wwwroot\css\Forms.css

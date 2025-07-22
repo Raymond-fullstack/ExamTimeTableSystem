@@ -436,3 +436,4 @@ C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\bin\Debug\net9.0\ru
 C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\obj\Debug\net9.0\compressed\hd8ewztc5w-nd5u3axh02.gz
 C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\obj\Debug\net9.0\compressed\flsisjjkqr-uh0svnnoly.gz
 C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\SEMAKULA RAYMOND\Desktop\MVC Projects\ExamTimeTable\obj\Debug\net9.0\ExamTimeTable.sourcelink.json

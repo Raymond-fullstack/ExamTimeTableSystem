@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Exam Timetable";
     var groupedExams = Model.GroupBy(e => e.ExamDate.Date).OrderBy(g => g.Key);
+    var programmes = ViewBag.Programmes as List<ExamTimeTable.Models.Programme>;
+    var years = ViewBag.Years as List<ExamTimeTable.Models.Year>;
 }
 
 <div class="card shadow-sm mb-4">
@@ -16,29 +18,50 @@
                 </button>
             </div>
         }
-
     </div>
     <div class="card-body">
-        <div class="row mb-3">
-            <div class="col-md-6">
+        <div class="row mb-3 align-items-center">
+            <div class="col-md-4 mb-2 mb-md-0">
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-search"></i></span>
                     <input type="text" id="searchInput" class="form-control" placeholder="Search exams...">
                 </div>
             </div>
-            <div class="col-md-6 text-end">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary active" id="fullViewBtn">Full View</button>
-                    <button type="button" class="btn btn-outline-primary" id="weekViewBtn">Week View</button>
-                    <button type="button" class="btn btn-outline-primary" id="dayViewBtn">Day View</button>
+            <div class="col-md-8 text-end">
+                <div class="d-flex flex-wrap justify-content-end align-items-center">
+                    <div class="btn-group me-2 mb-2 mb-md-0" role="group">
+                        <button type="button" class="btn btn-outline-primary active" id="fullViewBtn">Full View</button>
+                        <button type="button" class="btn btn-outline-primary" id="weekViewBtn">Week View</button>
+                        <button type="button" class="btn btn-outline-primary" id="dayViewBtn">Day View</button>
+                    </div>
+                    <select id="programmeFilter" class="form-select me-2 mb-2 mb-md-0" style="width: auto;">
+                        <option value="">All Programmes</option>
+                        @if (programmes != null)
+                        {
+                            foreach (var programme in programmes)
+                            {
+                                <option value="@programme.ProgrammeId">@programme.Name</option>
+                            }
+                        }
+                    </select>
+                    <select id="yearFilter" class="form-select mb-2 mb-md-0" style="width: auto;">
+                        <option value="">All Years</option>
+                        @if (years != null)
+                        {
+                            foreach (var year in years)
+                            {
+                                <option value="@year.YearId">@year.Name</option>
+                            }
+                        }
+                    </select>
                 </div>
             </div>
         </div>
 
-        <div id="fullView">
+        <div id="timetableDisplay">
             @foreach (var dayGroup in groupedExams)
             {
-                <div class="card mb-4">
+                <div class="card mb-4 exam-day-group" data-exam-date="@dayGroup.Key.ToString("yyyy-MM-dd")">
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">@dayGroup.Key.ToString("dddd, MMMM dd, yyyy")</h6>
                         <span class="badge bg-primary">@dayGroup.Count() exams</span>
@@ -49,7 +72,15 @@
                                 <h6 class="text-center mb-3"><i class="bi bi-sun"></i> Morning Session (9AM - 12PM)</h6>
                                 @foreach (var exam in dayGroup.Where(e => e.StartTime == new TimeOnly(9, 0)).OrderBy(e => e.CourseUnit.Code))
                                 {
-                                    <div class="card mb-3 exam-card">
+                                    // Get the first Programme and Year associated with the CourseUnit for data attributes
+                                    var programmeId = exam.CourseUnit.ProgrammeCourseUnits?.FirstOrDefault()?.ProgrammeId;
+                                    var yearId = exam.CourseUnit.ProgrammeCourseUnits?.FirstOrDefault()?.YearId;
+
+                                    <div class="card mb-3 exam-card"
+                                         data-exam-id="@exam.ExamId"
+                                         data-programme-id="@(programmeId.HasValue? programmeId.ToString() : "")"
+                                         data-year-id="@(yearId.HasValue? yearId.ToString() : "")"
+                                         data-search-text="@(exam.CourseUnit.Code + " " + exam.CourseUnit.Name + " " + string.Join(" ", exam.ExamRooms.Select(er => er.Room.Code)) + " " + string.Join(" ", exam.ExamRooms.SelectMany(er => er.Invigilators.Select(i => i.Invigilator.Name)))).ToLower()">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div>
@@ -82,7 +113,6 @@
                                                                 </button>
                                                             </li>
                                                         }
-                                                        
                                                     </ul>
                                                 </div>
                                             </div>
@@ -94,7 +124,15 @@
                                 <h6 class="text-center mb-3"><i class="bi bi-moon"></i> Afternoon Session (2PM - 5PM)</h6>
                                 @foreach (var exam in dayGroup.Where(e => e.StartTime == new TimeOnly(14, 0)).OrderBy(e => e.CourseUnit.Code))
                                 {
-                                    <div class="card mb-3 exam-card">
+                                    // Get the first Programme and Year associated with the CourseUnit for data attributes
+                                    var programmeId = exam.CourseUnit.ProgrammeCourseUnits?.FirstOrDefault()?.ProgrammeId;
+                                    var yearId = exam.CourseUnit.ProgrammeCourseUnits?.FirstOrDefault()?.YearId;
+
+                                    <div class="card mb-3 exam-card"
+                                         data-exam-id="@exam.ExamId"
+                                         data-programme-id="@(programmeId.HasValue? programmeId.ToString() : "")"
+                                         data-year-id="@(yearId.HasValue? yearId.ToString() : "")"
+                                         data-search-text="@(exam.CourseUnit.Code + " " + exam.CourseUnit.Name + " " + string.Join(" ", exam.ExamRooms.Select(er => er.Room.Code)) + " " + string.Join(" ", exam.ExamRooms.SelectMany(er => er.Invigilators.Select(i => i.Invigilator.Name)))).ToLower()">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div>
@@ -127,7 +165,6 @@
                                                                 </button>
                                                             </li>
                                                         }
-                                                        
                                                     </ul>
                                                 </div>
                                             </div>
@@ -139,13 +176,16 @@
                     </div>
                 </div>
             }
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    No exams scheduled. Click "Generate New" to create a timetable.
+                </div>
+            }
         </div>
-
-        <!-- Week and Day views would be implemented similarly but with different grouping -->
     </div>
 </div>
 
-<!-- Generate Timetable Modal -->
 <div class="modal fade" id="generateModal" tabindex="-1" aria-labelledby="generateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -175,7 +215,6 @@
     </div>
 </div>
 
-<!-- Reschedule Modal -->
 <div class="modal fade" id="rescheduleModal" tabindex="-1" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -183,7 +222,7 @@
                 <h5 class="modal-title" id="rescheduleModalLabel">Reschedule Exam</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="rescheduleForm" method="post">
+            <form id="rescheduleForm" method="post" asp-action="Reschedule">
                 <input type="hidden" id="rescheduleExamId" name="examId">
                 <div class="modal-body">
                     <div class="mb-3">
@@ -205,6 +244,9 @@
                             </label>
                         </div>
                     </div>
+                    <div class="alert alert-info">
+                        Note: This rescheduling is basic and does not check for conflicts (e.g., student, room, invigilator clashes). For robust changes, consider "Generate New".
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -218,43 +260,138 @@
 @section Scripts {
     <script>
         $(document).ready(function() {
-            // Search functionality
-            $('#searchInput').on('keyup', function() {
-                const searchText = $(this).val().toLowerCase();
-                $('.exam-card').each(function() {
-                    const cardText = $(this).text().toLowerCase();
-                    $(this).toggle(cardText.includes(searchText));
+            const $examCards = $('.exam-card');
+            const $examDayGroups = $('.exam-day-group');
+            const $searchInput = $('#searchInput');
+            const $programmeFilter = $('#programmeFilter');
+            const $yearFilter = $('#yearFilter');
+            const $fullViewBtn = $('#fullViewBtn');
+            const $weekViewBtn = $('#weekViewBtn');
+            const $dayViewBtn = $('#dayViewBtn');
+
+            let currentView = 'full'; // 'full', 'week', 'day'
+            let currentFilters = {
+                search: '',
+                programme: '',
+                year: ''
+            };
+
+            function applyFilters() {
+                const searchText = currentFilters.search;
+                const selectedProgrammeId = currentFilters.programme;
+                const selectedYearId = currentFilters.year;
+
+                $examDayGroups.each(function() {
+                    const $dayGroup = $(this);
+                    let dayGroupHasVisibleExams = false;
+
+                    $dayGroup.find('.exam-card').each(function() {
+                        const $card = $(this);
+                        const cardSearchText = $card.data('search-text');
+                        const cardProgrammeId = $card.data('programme-id').toString();
+                        const cardYearId = $card.data('year-id').toString();
+
+                        const matchesSearch = !searchText || cardSearchText.includes(searchText);
+                        const matchesProgramme = !selectedProgrammeId || cardProgrammeId === selectedProgrammeId;
+                        const matchesYear = !selectedYearId || cardYearId === selectedYearId;
+
+                        const isVisible = matchesSearch && matchesProgramme && matchesYear;
+                        $card.toggle(isVisible);
+
+                        if (isVisible) {
+                            dayGroupHasVisibleExams = true;
+                        }
+                    });
+
+                    // Only show day group if it contains visible exams after filtering
+                    $dayGroup.toggle(dayGroupHasVisibleExams);
                 });
+
+                updateView();
+            }
+
+            function updateView() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                $examDayGroups.each(function() {
+                    const $dayGroup = $(this);
+                    const examDateStr = $dayGroup.data('exam-date'); // YYYY-MM-DD
+                    const examDate = new Date(examDateStr + 'T00:00:00'); // Ensure UTC for comparison
+
+                    let showDayGroup = true;
+
+                    if (currentView === 'day') {
+                        showDayGroup = examDate.toDateString() === today.toDateString();
+                    } else if (currentView === 'week') {
+                        const startOfWeek = new Date(today);
+                        startOfWeek.setDate(today.getDate() - today.getDay()); // Sunday as start of week
+                        startOfWeek.setHours(0, 0, 0, 0);
+
+                        const endOfWeek = new Date(startOfWeek);
+                        endOfWeek.setDate(startOfWeek.getDate() + 6); // Saturday as end of week
+                        endOfWeek.setHours(23, 59, 59, 999);
+
+                        showDayGroup = examDate >= startOfWeek && examDate <= endOfWeek;
+                    }
+
+                    // Also consider if the day group has any visible exams after other filters
+                    const hasVisibleCards = $dayGroup.find('.exam-card:visible').length > 0;
+                    $dayGroup.toggle(showDayGroup && hasVisibleCards);
+                });
+            }
+
+            // Event Listeners
+            $searchInput.on('keyup', function() {
+                currentFilters.search = $(this).val().toLowerCase();
+                applyFilters();
+            });
+
+            $programmeFilter.on('change', function() {
+                currentFilters.programme = $(this).val();
+                applyFilters();
+            });
+
+            $yearFilter.on('change', function() {
+                currentFilters.year = $(this).val();
+                applyFilters();
+            });
+
+            $fullViewBtn.on('click', function() {
+                $fullViewBtn.addClass('active');
+                $weekViewBtn.removeClass('active');
+                $dayViewBtn.removeClass('active');
+                currentView = 'full';
+                applyFilters();
+            });
+
+            $weekViewBtn.on('click', function() {
+                $weekViewBtn.addClass('active');
+                $fullViewBtn.removeClass('active');
+                $dayViewBtn.removeClass('active');
+                currentView = 'week';
+                applyFilters();
+            });
+
+            $dayViewBtn.on('click', function() {
+                $dayViewBtn.addClass('active');
+                $fullViewBtn.removeClass('active');
+                $dayViewBtn.removeClass('active');
+                currentView = 'day';
+                applyFilters();
             });
 
             // Reschedule button click
             $('.reschedule-btn').click(function() {
                 const examId = $(this).data('exam-id');
                 $('#rescheduleExamId').val(examId);
+                // Optionally pre-fill date/time from current exam if you fetch exam details
+                $('#rescheduleDate').val(new Date().toISOString().split('T')[0]); // Sets to today by default
                 $('#rescheduleModal').modal('show');
             });
 
-            // Form submission for rescheduling
-            $('#rescheduleForm').submit(function(e) {
-                e.preventDefault();
-                const examId = $('#rescheduleExamId').val();
-                const newDate = $('#rescheduleDate').val();
-                const timeSlot = $('input[name="timeSlot"]:checked').val();
-
-                $.post('@Url.Action("Reschedule", "Exam")', {
-                    examId: examId,
-                    newDate: newDate,
-                    timeSlot: timeSlot
-                }, function() {
-                    $('#rescheduleModal').modal('hide');
-                    location.reload(); // Refresh to see changes
-                }).fail(function() {
-                    alert('Error rescheduling exam');
-                });
-            });
-
-            // Initialize date picker for reschedule
-            $('#rescheduleDate').val(new Date().toISOString().split('T')[0]);
+            // Initial apply filters on load
+            applyFilters();
         });
     </script>
 }

@@ -72,7 +72,7 @@ namespace ExamTimeTable.Controllers
                     _context.Update(room);
                     await _context.SaveChangesAsync();
                     TempData["ToastMessage"] = "Room updated successfully!";
-                    TempData["ToastType"] = "success";
+                    TempData["ToastType"] = "warning";
                 return RedirectToAction("Index");
                 
             }
@@ -99,7 +99,7 @@ namespace ExamTimeTable.Controllers
                 _context.Rooms.Remove(room);
                 await _context.SaveChangesAsync();
                 TempData["ToastMessage"] = "Room deleted successfully!";
-                TempData["ToastType"] = "success";
+                TempData["ToastType"] = "danger";
             }
             return RedirectToAction("Index");
         }
